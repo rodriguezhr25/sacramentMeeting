@@ -8589,25 +8589,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\David Vera\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\alefinir\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\David Vera\\Documents\\BYU-I\\CIT365\\week13\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
+      "projectUniqueName": "C:\\Users\\alefinir\\Documents\\code\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
       "projectName": "SacramentalApp",
-      "projectPath": "C:\\Users\\David Vera\\Documents\\BYU-I\\CIT365\\week13\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
-      "packagesPath": "C:\\Users\\David Vera\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\David Vera\\Documents\\BYU-I\\CIT365\\week13\\sacramentMeeting\\SacramentalApp\\obj\\",
+      "projectPath": "C:\\Users\\alefinir\\Documents\\code\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
+      "packagesPath": "C:\\Users\\alefinir\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alefinir\\Documents\\code\\sacramentMeeting\\SacramentalApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\David Vera\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alefinir\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -8669,7 +8667,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -29,10 +29,10 @@ namespace SacramentalApp.Models
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Sacrament Hymn")]
         public string SacramentHymn { get; set; }
-
+        /*drop later*/
         [StringLength(100, MinimumLength = 10)]
         public string Speaker { get; set; }
-
+        /**/
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Closening Song")]
         public string CloseningSong { get; set; }
@@ -41,7 +41,17 @@ namespace SacramentalApp.Models
         [Display(Name = "Closening Prayer")]
         public string CloseningPrayer { get; set; }
 
-        
+        public ICollection<Speach> Speeches { get; set; }
+    }
+    public class Speach
+    {
+        public int SpeakerId { get; set; }
+        public string NameSpeaker { get; set; }
+        [StringLength(100, MinimumLength = 10)]
+        [Display(Name = "Topic")]
+        public string Topic { get; set; }
+
+
     }
 
 }
