@@ -38,17 +38,7 @@ namespace SacramentalApp.Models
         [Display(Name = "Closening Prayer")]
         public string CloseningPrayer { get; set; }
 
-        public ICollection<Speach> Speeches { get; set; }
-    }
-    public class Speach
-    {
-        public int Id { get; set; }
-        public string NameSpeaker { get; set; }
-        [StringLength(100, MinimumLength = 10)]
-        [Display(Name = "Topic")]
-        public string Topic { get; set; }
-
-
+        public ICollection<Speech> Speeches { get; set; }
     }
 
 }

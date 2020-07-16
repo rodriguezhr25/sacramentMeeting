@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace SacramentalApp.Models
+using SacramentalApp.Models;
+
+namespace SacramentalApp.Data
+
 {
     public class SacramentalAppContext : DbContext
     {
@@ -14,5 +17,7 @@ namespace SacramentalApp.Models
         }
 
         public DbSet<SacramentalApp.Models.Meeting> Meeting { get; set; }
+        public DbSet<SacramentalApp.Models.Speech>  Speech { get; set; }
     }
 }
+

@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SacramentalApp.Models;
 using Microsoft.EntityFrameworkCore;
+using SacramentalApp.Models;
+
 
 namespace SacramentalApp
 {
@@ -27,7 +28,8 @@ namespace SacramentalApp
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<SacramentalAppContext>(options =>
+
+            services.AddDbContext<Data.SacramentalAppContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SacramentalAppContext")));
         }
 
