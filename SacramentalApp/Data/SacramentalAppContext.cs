@@ -8,7 +8,7 @@ namespace SacramentalApp.Models
 {
     public class SacramentalAppContext : DbContext
     {
-        public SacramentalAppContext (DbContextOptions<SacramentalAppContext> options)
+        public SacramentalAppContext(DbContextOptions<SacramentalAppContext> options)
             : base(options)
         {
         }

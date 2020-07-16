@@ -10,7 +10,7 @@ namespace SacramentalApp.Models
     {
         public int Id { get; set; }
 
-        
+
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
@@ -19,7 +19,7 @@ namespace SacramentalApp.Models
         public string ConductingLeader { get; set; }
 
         [StringLength(100, MinimumLength = 10)]
-        [Display(Name = "Opening Song")]        
+        [Display(Name = "Opening Song")]
         public string OpeningSong { get; set; }
 
         [StringLength(100, MinimumLength = 10)]
@@ -29,10 +29,7 @@ namespace SacramentalApp.Models
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Sacrament Hymn")]
         public string SacramentHymn { get; set; }
-        /*drop later*/
-        [StringLength(100, MinimumLength = 10)]
-        public string Speaker { get; set; }
-        /**/
+
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Closening Song")]
         public string CloseningSong { get; set; }
@@ -45,7 +42,7 @@ namespace SacramentalApp.Models
     }
     public class Speach
     {
-        public int SpeakerId { get; set; }
+        public int Id { get; set; }
         public string NameSpeaker { get; set; }
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Topic")]

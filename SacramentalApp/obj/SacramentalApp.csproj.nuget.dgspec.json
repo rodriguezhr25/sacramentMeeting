@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alefinir\\Documents\\code\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj": {}
+    "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\SacramentalApp\\SacramentalApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alefinir\\Documents\\code\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj": {
+    "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\SacramentalApp\\SacramentalApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alefinir\\Documents\\code\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
+        "projectUniqueName": "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\SacramentalApp\\SacramentalApp.csproj",
         "projectName": "SacramentalApp",
-        "projectPath": "C:\\Users\\alefinir\\Documents\\code\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
+        "projectPath": "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\SacramentalApp\\SacramentalApp.csproj",
         "packagesPath": "C:\\Users\\alefinir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alefinir\\Documents\\code\\sacramentMeeting\\SacramentalApp\\obj\\",
+        "outputPath": "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\SacramentalApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -45,20 +45,6 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.6, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[3.1.6, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.1.6, )"
-            },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[3.1.3, )"
             }
           },
           "imports": [
