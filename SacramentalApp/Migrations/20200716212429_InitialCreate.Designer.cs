@@ -10,7 +10,7 @@ using SacramentalApp.Data;
 namespace SacramentalApp.Migrations
 {
     [DbContext(typeof(SacramentalAppContext))]
-    [Migration("20200716184931_InitialCreate")]
+    [Migration("20200716212429_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,7 +67,7 @@ namespace SacramentalApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MeetingId")
+                    b.Property<int>("MeetingId")
                         .HasColumnType("int");
 
                     b.Property<string>("NameSpeaker")
@@ -88,7 +88,9 @@ namespace SacramentalApp.Migrations
                 {
                     b.HasOne("SacramentalApp.Models.Meeting", null)
                         .WithMany("Speeches")
-                        .HasForeignKey("MeetingId");
+                        .HasForeignKey("MeetingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

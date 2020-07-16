@@ -32,9 +32,9 @@ namespace SacramentalApp.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    MeetingId = table.Column<int>(nullable: false),
                     NameSpeaker = table.Column<string>(nullable: true),
-                    Topic = table.Column<string>(maxLength: 100, nullable: true),
-                    MeetingId = table.Column<int>(nullable: true)
+                    Topic = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -44,7 +44,7 @@ namespace SacramentalApp.Migrations
                         column: x => x.MeetingId,
                         principalTable: "Meeting",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
