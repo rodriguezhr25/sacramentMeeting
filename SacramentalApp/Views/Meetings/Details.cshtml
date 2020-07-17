@@ -48,7 +48,10 @@
             @Html.DisplayNameFor(model => model.Speeches)
         </dt>
         <dd class="col-sm-10">
-            <table class="table">
+
+            @*crud speeches*@
+
+            @*<table class="table">
                 <tr>
                     <th>Speaker</th>
                     <th>Topic</th>
@@ -64,7 +67,39 @@
                         </td>
                     </tr>
                 }
-            </table>
+            </table>*@
+
+
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>Speaker</th>
+                    <th>Topic</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Speeches)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameSpeaker)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Topic)
+                        </td>
+                        <td>
+                            <a asp-controller="Speeches" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-controller="Speeches" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-controller="Speeches" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+            @* end crud speeches *@
+
         </dd>
 
         @*end speeches*@

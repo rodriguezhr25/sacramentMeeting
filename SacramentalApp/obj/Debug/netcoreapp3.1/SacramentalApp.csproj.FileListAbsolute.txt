@@ -171,3 +171,8 @@ C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj
 C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\SacramentalApp.pdb
 C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\SacramentalApp.genruntimeconfig.cache
 C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\SacramentalApp.csprojAssemblyReference.cache
+C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\Razor\Views\Speeches\Create.cshtml.g.cs
+C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\Razor\Views\Speeches\Delete.cshtml.g.cs
+C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\Razor\Views\Speeches\Details.cshtml.g.cs
+C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\Razor\Views\Speeches\Edit.cshtml.g.cs
+C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\Razor\Views\Speeches\Index.cshtml.g.cs
