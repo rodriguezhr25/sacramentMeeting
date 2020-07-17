@@ -68,9 +68,13 @@ namespace SacramentalApp.Controllers
                 
                 _context.Add(speech);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Meetings", new { id = speech.MeetingId });
             }
             return View(speech);
+            //return RedirectToAction("Details", "Meetings", new { id = speech.MeetingId });
+
+
         }
 
         // GET: Speeches/Edit/5
