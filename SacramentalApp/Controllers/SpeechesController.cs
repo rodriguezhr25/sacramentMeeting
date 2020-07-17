@@ -46,6 +46,7 @@ namespace SacramentalApp.Controllers
         // GET: Speeches/Create
         public IActionResult Create()
         {
+
             return View();
         }
 
@@ -111,7 +112,8 @@ namespace SacramentalApp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Meetings", new { id = speech.MeetingId });
             }
             return View(speech);
         }
@@ -131,7 +133,8 @@ namespace SacramentalApp.Controllers
                 return NotFound();
             }
 
-            return View(speech);
+            //return View(speech);
+            return RedirectToAction("Details", "Meetings", new { id = speech.MeetingId });
         }
 
         // POST: Speeches/Delete/5

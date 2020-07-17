@@ -13,11 +13,16 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+            <input type="hidden" asp-for="MeetingId" class="form-control" />
+
+            @*<div class="form-group">
                 <label asp-for="MeetingId" class="control-label"></label>
                 <select asp-for="MeetingId" class="form-control" asp-items="ViewBag.MeetingId"></select>
+
                 <span asp-validation-for="MeetingId" class="text-danger"></span>
-            </div>
+            </div>*@
+
+
             <div class="form-group">
                 <label asp-for="NameSpeaker" class="control-label"></label>
                 <input asp-for="NameSpeaker" class="form-control" />
@@ -36,8 +41,8 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to All Speeches</a> |
-    <a asp-controller="Meetings" asp-action="Details" asp-route-id="@Model.MeetingId">Back Meeting Container</a>
+    @*<a asp-action="Index">Back to All Speeches</a> |*@
+    <a asp-controller="Meetings" asp-action="Details" asp-route-id="@Model.MeetingId">Back to Meeting</a>
 </div>
 
 @section Scripts {

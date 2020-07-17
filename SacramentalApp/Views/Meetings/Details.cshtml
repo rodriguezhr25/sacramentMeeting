@@ -49,9 +49,14 @@
         </dt>
         <dd class="col-sm-10">
 
-            @*crud speeches*@
 
-            @*<table class="table">
+            <a asp-controller="Speeches" asp-action="Create" asp-route-id="@Model.Id">Add Speech</a>
+
+            @*@Html.ActionLink("Add Speeches", "Create", "Speeches", new {MId=Model.Id }, new { });*@
+
+                @*crud speeches*@
+
+                @*<table class="table">
                 <tr>
                     <th>Speaker</th>
                     <th>Topic</th>
@@ -70,41 +75,41 @@
             </table>*@
 
 
-            <table class="table">
-            <thead>
-                <tr>
-                    <th>Speaker</th>
-                    <th>Topic</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Speeches)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NameSpeaker)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Topic)
-                        </td>
-                        <td>
-                            <a asp-controller="Speeches" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-controller="Speeches" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-controller="Speeches" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+<table class="table">
+<thead>
+  <tr>
+      <th>Speaker</th>
+      <th>Topic</th>
+  </tr>
+</thead>
+<tbody>
+  @foreach(var item in Model.Speeches)
+  {
+      <tr>
+          <td>
+              @Html.DisplayFor(modelItem => item.NameSpeaker)
+          </td>
+          <td>
+              @Html.DisplayFor(modelItem => item.Topic)
+          </td>
+          <td>
+              <a asp-controller="Speeches" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+              <a asp-controller="Speeches" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+              <a asp-controller="Speeches" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+          </td>
+      </tr>
+  }
+</tbody>
+</table>
 
 
-            @* end crud speeches *@
+        @* end crud speeches *@
 
-        </dd>
+</dd>
 
         @*end speeches*@
 
-        <dt class="col-sm-2">
+<dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CloseningSong)
         </dt>
         <dd class="col-sm-10">
