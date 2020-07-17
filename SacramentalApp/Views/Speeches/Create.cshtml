@@ -5,7 +5,7 @@
 }
 
 <h1>Create</h1>
-
+<h1>---@ViewData["MId"] -- </h1>
 
 <h4>Speech</h4>
 <hr />
@@ -13,18 +13,18 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<input type="hidden" asp-for="MeetingId" class="form-control" />*@
+            <input type="hidden" asp-for="MeetingId" class="form-control" value="@ViewData["MId"]"/>
 
             @*<div class="form-group">
             <label asp-for="MeetingId" class="control-label"></label>
             <select asp-for="MeetingId" class ="form-control" asp-items="ViewBag.MeetingId"></select>
-        </div>*@
+            </div>*@
 
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="MeetingId" class="control-label"></label>
                 <input asp-for="MeetingId" class="form-control"/>
                 <span asp-validation-for="MeetingId" class="text-danger"></span>
-            </div>
+            </div>*@
 
             <div class="form-group">
                 <label asp-for="NameSpeaker" class="control-label"></label>

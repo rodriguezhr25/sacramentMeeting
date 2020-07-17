@@ -50,9 +50,10 @@
         <dd class="col-sm-10">
 
             @*<a asp-controller="Speeches" asp-action="Create" asp-route-MId="@Model.Id">Add Speech</a>*@
+            <a asp-controller="Speeches" asp-action="Create" asp-route-id="@Model.Id">Create</a>
 
 
-            @Html.ActionLink("Add Speeches", "Create", "Speeches", new {MId=Model.Id }, new { })
+            @*@Html.ActionLink("Add Speeches", "Create", "Speeches", new {MId=Model.Id }, new { })*@
 
             @*crud speeches*@
 

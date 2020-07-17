@@ -44,8 +44,13 @@ namespace SacramentalApp.Controllers
         }
 
         // GET: Speeches/Create
-        public IActionResult Create(int MId)
+        public IActionResult Create(int? id)
         {
+ 
+
+            ViewData["MId"] = id;
+ 
+
 
             return View();
         }
@@ -55,11 +60,12 @@ namespace SacramentalApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MeetingId,NameSpeaker,Topic")] Speech speech)
+        public async Task<IActionResult> Create([Bind("MeetingId,NameSpeaker,Topic")] Speech speech)
         {
             if (ModelState.IsValid)
             {
                 //speech.MeetingId=ViewBag.MId;
+                
                 _context.Add(speech);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
