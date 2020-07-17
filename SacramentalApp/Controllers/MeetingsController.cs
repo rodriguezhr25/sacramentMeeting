@@ -159,6 +159,41 @@ namespace SacramentalApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+
+        /*edit speakers*/
+        // GET: Meetings/Details/5
+        public async Task<IActionResult> EditSpeakers(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var meeting = await _context.Meeting
+
+            .Include(s => s.Speeches)
+
+
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.Id == id);
+
+
+
+
+
+            if (meeting == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(meeting);
+        }
+
+        /*end edit speakers*/
+
+
         private bool MeetingExists(int id)
         {
             return _context.Meeting.Any(e => e.Id == id);

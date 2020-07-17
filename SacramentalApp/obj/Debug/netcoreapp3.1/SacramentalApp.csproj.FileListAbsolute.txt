@@ -176,3 +176,4 @@ C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj
 C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\SacramentalApp.pdb
 C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\SacramentalApp.genruntimeconfig.cache
 C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\SacramentalApp.csprojAssemblyReference.cache
+C:\Users\alefinir\Documents\code\alefinirApp\sacramentMeeting\SacramentalApp\obj\Debug\netcoreapp3.1\Razor\Views\Meetings\EditSpeakers.cshtml.g.cs

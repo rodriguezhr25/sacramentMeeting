@@ -69,7 +69,7 @@ namespace SacramentalApp.Controllers
                 _context.Add(speech);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Details", "Meetings", new { id = speech.MeetingId });
+                return RedirectToAction("EditSpeakers", "Meetings", new { id = speech.MeetingId });
             }
             return View(speech);
             //return RedirectToAction("Details", "Meetings", new { id = speech.MeetingId });
@@ -124,7 +124,7 @@ namespace SacramentalApp.Controllers
                     }
                 }
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Details", "Meetings", new { id = speech.MeetingId });
+                return RedirectToAction("EditSpeakers", "Meetings", new { id = speech.MeetingId });
             }
             return View(speech);
         }
@@ -157,7 +157,7 @@ namespace SacramentalApp.Controllers
             _context.Speech.Remove(speech);
             await _context.SaveChangesAsync();
             //return RedirectToAction(nameof(Index));
-            return RedirectToAction("Details", "Meetings", new { id = speech.MeetingId });
+            return RedirectToAction("EditSpeakers", "Meetings", new { id = speech.MeetingId });
         }
 
         private bool SpeechExists(int id)
