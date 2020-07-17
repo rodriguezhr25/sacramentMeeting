@@ -33,12 +33,26 @@ namespace SacramentalApp.Controllers
                 return NotFound();
             }
 
+            //var meeting = await _context.Meeting
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+
             var meeting = await _context.Meeting
-                .FirstOrDefaultAsync(m => m.Id == id);
+
+            .Include(s => s.Speeches)
+   
+
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.Id == id);
+
+
+
+
+
             if (meeting == null)
             {
                 return NotFound();
             }
+
 
             return View(meeting);
         }
