@@ -44,7 +44,7 @@ namespace SacramentalApp.Controllers
         }
 
         // GET: Speeches/Create
-        public IActionResult Create()
+        public IActionResult Create(int MId)
         {
 
             return View();
@@ -59,6 +59,7 @@ namespace SacramentalApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                //speech.MeetingId=ViewBag.MId;
                 _context.Add(speech);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
