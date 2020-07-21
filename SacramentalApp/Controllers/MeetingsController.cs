@@ -20,9 +20,50 @@ namespace SacramentalApp.Controllers
         }
 
         // GET: Meetings
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+     string sortOrder,
+     string currentFilter,
+     string searchString,
+     int? pageNumber)
         {
-            return View(await _context.Meeting.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+            var meetings = from s in _context.Meeting
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                meetings = meetings.Where(s => s.OpeningSong.Contains(searchString)
+                                       || s.CloseningSong.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    meetings = meetings.OrderByDescending(s => s.ConductingLeader);
+                    break;
+                case "Date":
+                    meetings = meetings.OrderBy(s => s.Date);
+                    break;
+                case "date_desc":
+                    meetings = meetings.OrderByDescending(s => s.Date);
+                    break;
+                default:
+                    meetings = meetings.OrderBy(s => s.ConductingLeader);
+                    break;
+            }
+     
+            int pageSize = 5;
+            return View(await PaginatedList<Meeting>.CreateAsync(meetings.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Meetings/Details/5

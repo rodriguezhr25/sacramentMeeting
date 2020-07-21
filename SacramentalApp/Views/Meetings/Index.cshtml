@@ -1,72 +1,112 @@
-﻿@model IEnumerable<SacramentalApp.Models.Meeting>
-
+﻿@model PaginatedList<SacramentalApp.Models.Meeting>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Meetings</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ConductingLeader)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OpeningSong)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OpeningPrayer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SacramentHymn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CloseningSong)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CloseningPrayer)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ConductingLeader)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OpeningSong)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OpeningPrayer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SacramentHymn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CloseningSong)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CloseningPrayer)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="EditSpeakers" asp-route-id="@item.Id">Manage Speakers</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<form asp-action="Index" method="get">
+    <div class="form-group row">
+        <label for="searchBox" class="col-sm-2 col-form-label">Find by Songs:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="searchBox" name="SearchString" value="@ViewData["currentFilter"]" />
+        </div>
+        <div class="col-sm-1">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+        <div class="col-sm-1">
+            <a class="btn btn-danger mb-2" asp-action="Index">Reload</a>
+        </div>
+    </div>
+</form>
+<div class="row result">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="border-bottom">
+                <tr>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]"> Date</a>
+                    </th>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Conducting Leader</a>
+                    </th>
+                    <th>
+                        Opening Song
+                    </th>
+                    <th>
+                        Opening Prayer
+                    </th>
+                    <th>
+                        Sacrament Hymn
+                    </th>
+                    <th>
+                        Closening Song
+                    </th>
+                    <th>
+                        Closening Prayer
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConductingLeader)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpeningSong)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpeningPrayer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SacramentHymn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CloseningSong)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CloseningPrayer)
+                        </td>
+                        <td class="note-cell">
+                            <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                            <a class="btn btn-primary" asp-action="EditSpeakers" asp-route-id="@item.Id" title="Manage Speakers"><i class="fa fa-users"></i></a>
+                            <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id" title="Details"><i class="fa fa-file-o"></i></a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i class="fa fa-trash"></i></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
-    </tbody>
-</table>
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

@@ -49,15 +49,6 @@
         </dt>
         <dd class="col-sm-10">
 
-            @*<a asp-controller="Speeches" asp-action="Create" asp-route-MId="@Model.Id">Add Speech</a>*@
-
-            
-            @*<a asp-controller="Speeches" asp-action="Create" asp-route-id="@Model.Id">Create</a>*@
-
-
-            @*@Html.ActionLink("Add Speeches", "Create", "Speeches", new {MId=Model.Id }, new { })*@
-
-            @*crud speeches*@
 
             <table class="table">
             <tr>
@@ -75,38 +66,7 @@
                     </td>
                 </tr>
             }
-        </table>
-
-
-            @*<table class="table">
-                <thead>
-                    <tr>
-                        <th>Speaker</th>
-                        <th>Topic</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Speeches)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NameSpeaker)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Topic)
-                            </td>
-                            <td>
-                                <a asp-controller="Speeches" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-controller="Speeches" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                <a asp-controller="Speeches" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>*@
-
-
-            @* end crud speeches *@
+        </table>           
 
         </dd>
 
@@ -125,13 +85,9 @@
             @Html.DisplayFor(model => model.CloseningPrayer)
         </dd>
 
-
-
-
-
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+    <a class="btn btn-warning" asp-action="Index">Back to List</a>
 </div>

@@ -15,14 +15,6 @@
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="MeetingId" class="form-control" />
 
-            @*<div class="form-group">
-                <label asp-for="MeetingId" class="control-label"></label>
-                <select asp-for="MeetingId" class="form-control" asp-items="ViewBag.MeetingId"></select>
-
-                <span asp-validation-for="MeetingId" class="text-danger"></span>
-            </div>*@
-
-
             <div class="form-group">
                 <label asp-for="NameSpeaker" class="control-label"></label>
                 <input asp-for="NameSpeaker" class="form-control" />
@@ -34,16 +26,14 @@
                 <span asp-validation-for="Topic" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input class="btn btn-primary" type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-warning" asp-controller="Meetings" asp-action="EditSpeakers" asp-route-id="@Model.MeetingId">Back to Meeting</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    @*<a asp-action="Index">Back to All Speeches</a> |*@
-    <a asp-controller="Meetings" asp-action="EditSpeakers" asp-route-id="@Model.MeetingId">Back to Meeting</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
