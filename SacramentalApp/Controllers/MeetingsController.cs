@@ -354,11 +354,14 @@ namespace SacramentalApp.Controllers
                 vPosition = vPosition + 20;
                 page.Canvas.DrawString(speaker, fontBold, brush, pageSize.Width - x - width - 2, vPosition );
                 page.Canvas.DrawString(item.NameSpeaker, fontRegular, brush, pageSize.Width - x - width + 80, vPosition );
+                page.Canvas.DrawString("Topic:", fontBold, brush, width - 300, vPosition, alignRight);
+                page.Canvas.DrawString(item.Topic, fontRegular, brush, width - 200, vPosition, alignRight);
+
                 if (count == 2 && meeting.IntermediateHymn != null)
                 {
                     vPosition = vPosition + 20;
                     page.Canvas.DrawString("Intermediate Hymn: ", fontBold, brush, pageSize.Width - x - width - 2, vPosition);
-                    page.Canvas.DrawString(meeting.SacramentHymn, fontRegular, brush, pageSize.Width - x - width + 120, vPosition);
+                    page.Canvas.DrawString(meeting.SacramentHymn, fontRegular, brush, pageSize.Width - x - width + 125, vPosition);
                 }
             }
             page.Canvas.DrawLine(pen2, init, y + vPosition + 20 , end, y + vPosition + 20);
