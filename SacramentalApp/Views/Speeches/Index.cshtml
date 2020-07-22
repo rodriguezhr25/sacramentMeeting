@@ -1,41 +1,80 @@
-﻿@model IEnumerable<SacramentalApp.Models.Speech>
-
+﻿@*@model IEnumerable<SacramentalApp.Models.Speech>*@
+@model PaginatedList<SacramentalApp.Models.SpeechMeeting>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Speeches";
 }
 
-<h1>Index</h1>
+<h1>Speeches</h1>
 
-<p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
-</p>
+<form asp-action="Index" method="get">
+    <div class="form-group row">
+        <label for="searchBox" class="col-sm-2 col-form-label">Find Speaker or Topic:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="searchBox" name="SearchString" value="@ViewData["currentFilter"]" />
+        </div>
+        <div class="col-sm-1">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+        <div class="col-sm-1">
+            <a class="btn btn-danger mb-2" asp-action="Index">Reload</a>
+        </div>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                @Html.DisplayNameFor(model => model.NameSpeaker)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Speaker</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Topic)
+                Topic
             </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]"> Date</a>
+            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NameSpeaker)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Topic)
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpeechData.NameSpeaker)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpeechData.Topic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeetingData.Date)
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.SpeechData.Id" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.SpeechData.Id" title="Details"><i class="fa fa-file-o"></i></a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.SpeechData.Id" title="Delete"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

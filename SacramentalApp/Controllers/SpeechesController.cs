@@ -18,11 +18,59 @@ namespace SacramentalApp.Controllers
         {
             _context = context;
         }
-
-        // GET: Speeches
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+        string sortOrder,
+        string currentFilter,
+        string searchString,
+        int? pageNumber)
         {
-            return View(await _context.Speech.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+            var speeches = from s in _context.Speech
+                           join m in _context.Meeting on s.MeetingId equals m.Id
+                           orderby m.Date
+                           select new SpeechMeeting { SpeechData = s, MeetingData = m };
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                speeches = speeches.Where(s => s.SpeechData.NameSpeaker.Contains(searchString) 
+                ||  s.SpeechData.Topic.Contains(searchString));
+
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    speeches = speeches.OrderByDescending(s => s.SpeechData.NameSpeaker);
+                    break;
+                case "Date":
+                    speeches = speeches.OrderBy(s => s.MeetingData.Date);
+                    break;
+                case "date_desc":
+                    speeches = speeches.OrderByDescending(s => s.MeetingData.Date);
+                    break;
+                default:
+                    speeches = speeches.OrderBy(s => s.SpeechData.NameSpeaker);
+                    break;
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<SpeechMeeting>.CreateAsync(speeches.AsNoTracking(), pageNumber ?? 1, pageSize));
+
+            //   return View(await speeches.ToListAsync());
+
+            //return View(await _context.Speech.ToListAsync());
         }
 
         // GET: Speeches/Details/5
@@ -46,10 +94,10 @@ namespace SacramentalApp.Controllers
         // GET: Speeches/Create
         public IActionResult Create(int? id)
         {
- 
+
 
             ViewData["MId"] = id;
- 
+
 
 
             return View();
@@ -65,7 +113,7 @@ namespace SacramentalApp.Controllers
             if (ModelState.IsValid)
             {
                 //speech.MeetingId=ViewBag.MId;
-                
+
                 _context.Add(speech);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
