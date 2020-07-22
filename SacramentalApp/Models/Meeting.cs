@@ -12,6 +12,7 @@ namespace SacramentalApp.Models
 
 
         [DataType(DataType.Date)]
+        [Required]
         public DateTime Date { get; set; }
 
         [StringLength(100, MinimumLength = 10)]
@@ -29,6 +30,10 @@ namespace SacramentalApp.Models
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Sacrament Hymn")]
         public string SacramentHymn { get; set; }
+
+        [StringLength(100)]
+        [Display(Name = "Intermediate Hymn")]
+        public string IntermediateHymn { get; set; }
 
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Closening Song")]

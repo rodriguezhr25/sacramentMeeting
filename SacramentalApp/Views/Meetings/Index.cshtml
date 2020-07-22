@@ -43,6 +43,9 @@
                         Sacrament Hymn
                     </th>
                     <th>
+                        Intermediate Hymn
+                    </th>
+                    <th>
                         Closening Song
                     </th>
                     <th>
@@ -55,36 +58,39 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ConductingLeader)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OpeningSong)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OpeningPrayer)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SacramentHymn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CloseningSong)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CloseningPrayer)
-                        </td>
-                        <td class="note-cell">
-                            <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
-                            <a class="btn btn-primary" asp-action="EditSpeakers" asp-route-id="@item.Id" title="Manage Speakers"><i class="fa fa-users"></i></a>
-                            <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id" title="Details"><i class="fa fa-file-o"></i></a>
-                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i class="fa fa-trash"></i></a>
-                            <a class="btn btn-warning" asp-action="Print" asp-route-id="@item.Id" title="Print"><i class="fa fa-print"></i></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConductingLeader)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OpeningSong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OpeningPrayer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SacramentHymn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IntermediateHymn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CloseningSong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CloseningPrayer)
+                    </td>
+                    <td class="note-cell">
+                        <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                        <a class="btn btn-primary" asp-action="EditSpeakers" asp-route-id="@item.Id" title="Manage Speakers"><i class="fa fa-users"></i></a>
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id" title="Details"><i class="fa fa-file-o"></i></a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-warning" asp-action="Print" asp-route-id="@item.Id" title="Print"><i class="fa fa-print"></i></a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

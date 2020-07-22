@@ -49,9 +49,9 @@
         </dt>
         <dd class="col-sm-10">
 
-          
-            <a class="btn btn-success" asp-controller="Speeches" asp-action="Create" asp-route-id="@Model.Id">Create</a>
 
+            <a class="btn btn-success" asp-controller="Speeches" asp-action="Create" asp-route-id="@Model.Id">Create</a>
+            <a class="btn btn-warning" asp-action="Print" asp-route-id="@Model.Id" title="Print"><i class="fa fa-print"></i></a>
             <table class="table">
                 <thead>
                     <tr>
@@ -70,9 +70,10 @@
                                 @Html.DisplayFor(modelItem => item.Topic)
                             </td>
                             <td>
-                                <a class="btn btn-primary" asp-controller="Speeches" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-square-o"></i>Edit</a> 
-                                <a class="btn btn-primary" asp-controller="Speeches" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-file-o"></i>Details</a> 
-                                <a class="btn btn-danger" asp-controller="Speeches" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i>Delete</a>
+                                <a class="btn btn-primary" asp-controller="Speeches" asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                                <a class="btn btn-primary" asp-controller="Speeches" asp-action="Details" asp-route-id="@item.Id" title="Details"><i class="fa fa-file-o"></i></a>
+                                <a class="btn btn-danger" asp-controller="Speeches" asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i class="fa fa-trash"></i></a>
+
                             </td>
                         </tr>
                     }
@@ -80,12 +81,18 @@
             </table>
 
 
-   
+
 
         </dd>
 
         @*end speeches*@
 
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IntermediateHymn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IntermediateHymn)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CloseningSong)
         </dt>
@@ -106,6 +113,7 @@
     </dl>
 </div>
 <div>
-    <a  class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+   
     <a class="btn btn-warning" asp-action="Index">Back to List</a>
 </div>

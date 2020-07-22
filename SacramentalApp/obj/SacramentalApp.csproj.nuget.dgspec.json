@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj": {}
+    "C:\\Users\\hecto\\source\\repos\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj": {
+    "C:\\Users\\hecto\\source\\repos\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
+        "projectUniqueName": "C:\\Users\\hecto\\source\\repos\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
         "projectName": "SacramentalApp",
-        "projectPath": "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
-        "packagesPath": "C:\\Users\\alefinir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alefinir\\Documents\\code\\alefinirApp\\sacramentMeeting\\SacramentalApp\\obj\\",
+        "projectPath": "C:\\Users\\hecto\\source\\repos\\sacramentMeeting\\SacramentalApp\\SacramentalApp.csproj",
+        "packagesPath": "C:\\Users\\hecto\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hecto\\source\\repos\\sacramentMeeting\\SacramentalApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\alefinir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hecto\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],

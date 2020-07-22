@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SacramentalApp.Data;
 
 namespace SacramentalApp.Migrations
 {
     [DbContext(typeof(SacramentalAppContext))]
-    partial class SacramentalAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200722193447_NewField")]
+    partial class NewField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

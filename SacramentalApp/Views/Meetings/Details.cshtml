@@ -51,28 +51,35 @@
 
 
             <table class="table">
-            <tr>
-                <th>Speaker</th>
-                <th>Topic</th>
-            </tr>
-            @foreach (var item in Model.Speeches)
-            {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NameSpeaker)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Topic)
-                    </td>
+                    <th>Speaker</th>
+                    <th>Topic</th>
                 </tr>
-            }
-        </table>           
+                @foreach (var item in Model.Speeches)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameSpeaker)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Topic)
+                        </td>
+                    </tr>
+                }
+            </table>
 
         </dd>
 
         @*end speeches*@
 
-<dt class="col-sm-2">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IntermediateHymn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IntermediateHymn)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CloseningSong)
         </dt>
         <dd class="col-sm-10">

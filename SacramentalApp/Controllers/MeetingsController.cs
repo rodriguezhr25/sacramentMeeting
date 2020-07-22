@@ -82,10 +82,7 @@ namespace SacramentalApp.Controllers
             //    .FirstOrDefaultAsync(m => m.Id == id);
 
             var meeting = await _context.Meeting
-
-            .Include(s => s.Speeches)
-   
-
+            .Include(s => s.Speeches) 
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -113,8 +110,16 @@ namespace SacramentalApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,ConductingLeader,OpeningSong,OpeningPrayer,SacramentHymn,CloseningSong,CloseningPrayer")] Meeting meeting)
+        public async Task<IActionResult> Create([Bind("Id,Date,ConductingLeader,OpeningSong,OpeningPrayer,SacramentHymn,IntermediateHymn,CloseningSong,CloseningPrayer")] Meeting meeting)
         {
+            var dateMeeting = await _context.Meeting
+           .Include(s => s.Speeches)
+           .AsNoTracking()
+           .FirstOrDefaultAsync(m => m.Date == meeting.Date);
+            if(dateMeeting != null)
+            {
+                ModelState.AddModelError(string.Empty, "There exists a register for this date");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(meeting);
@@ -145,7 +150,7 @@ namespace SacramentalApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,ConductingLeader,OpeningSong,OpeningPrayer,SacramentHymn,CloseningSong,CloseningPrayer")] Meeting meeting)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,ConductingLeader,OpeningSong,OpeningPrayer,SacramentHymn,IntermediateHymn,CloseningSong,CloseningPrayer")] Meeting meeting)
         {
             if (id != meeting.Id)
             {
@@ -349,11 +354,11 @@ namespace SacramentalApp.Controllers
                 vPosition = vPosition + 20;
                 page.Canvas.DrawString(speaker, fontBold, brush, pageSize.Width - x - width - 2, vPosition );
                 page.Canvas.DrawString(item.NameSpeaker, fontRegular, brush, pageSize.Width - x - width + 80, vPosition );
-                if (count == 2)
+                if (count == 2 && meeting.IntermediateHymn != null)
                 {
                     vPosition = vPosition + 20;
-                    page.Canvas.DrawString("Intermediate hymn: ", fontBold, brush, pageSize.Width - x - width - 2, vPosition);
-                    page.Canvas.DrawString(meeting.SacramentHymn, fontRegular, brush, pageSize.Width - x - width + 115, vPosition);
+                    page.Canvas.DrawString("Intermediate Hymn: ", fontBold, brush, pageSize.Width - x - width - 2, vPosition);
+                    page.Canvas.DrawString(meeting.SacramentHymn, fontRegular, brush, pageSize.Width - x - width + 120, vPosition);
                 }
             }
             page.Canvas.DrawLine(pen2, init, y + vPosition + 20 , end, y + vPosition + 20);
