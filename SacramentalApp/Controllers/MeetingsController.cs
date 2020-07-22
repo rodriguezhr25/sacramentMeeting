@@ -47,8 +47,8 @@ namespace SacramentalApp.Controllers
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                meetings = meetings.Where(s => s.OpeningSong.Contains(searchString)
-                                       || s.CloseningSong.Contains(searchString));
+                meetings = meetings.Where(s => s.ConductingLeader.Contains(searchString));
+                                   
             }
             switch (sortOrder)
             {
@@ -265,7 +265,7 @@ namespace SacramentalApp.Controllers
             }
             var fileName = meeting.Date.ToShortDateString();
             fileName = fileName.Replace('/', '_');
-            fileName = fileName.Replace('-', '_') + ".pdf";
+            fileName = "Sacrament_agenda_" + fileName.Replace('-', '_') + ".pdf";
            
             PdfDocument doc = new PdfDocument();
             // Create one page
@@ -369,7 +369,7 @@ namespace SacramentalApp.Controllers
             page.Canvas.DrawString(meeting.CloseningPrayer, fontRegular, brush, pageSize.Width - x - width + 95, vPosition + 20);
             var path = Path.Combine(
                     Directory.GetCurrentDirectory(),
-                    "wwwroot", fileName);
+                    "wwwroot/PdfFiles", fileName);
             doc.SaveToFile(path);
             doc.Close();
             var memory = new MemoryStream();

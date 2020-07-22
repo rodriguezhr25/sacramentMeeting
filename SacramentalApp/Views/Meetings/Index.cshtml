@@ -10,7 +10,7 @@
 </p>
 <form asp-action="Index" method="get">
     <div class="form-group row">
-        <label for="searchBox" class="col-sm-2 col-form-label">Find by Songs:</label>
+        <label for="searchBox" class="col-sm-2 col-form-label">Find by Leader:</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" id="searchBox" name="SearchString" value="@ViewData["currentFilter"]" />
         </div>
@@ -68,7 +68,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.OpeningSong)
                     </td>
-                    <td>
+                    <td class="note-cell">
                         @Html.DisplayFor(modelItem => item.OpeningPrayer)
                     </td>
                     <td>
@@ -80,7 +80,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.CloseningSong)
                     </td>
-                    <td>
+                    <td class="note-cell">
                         @Html.DisplayFor(modelItem => item.CloseningPrayer)
                     </td>
                     <td class="note-cell">
