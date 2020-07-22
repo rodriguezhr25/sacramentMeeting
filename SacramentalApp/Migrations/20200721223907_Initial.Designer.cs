@@ -10,8 +10,8 @@ using SacramentalApp.Data;
 namespace SacramentalApp.Migrations
 {
     [DbContext(typeof(SacramentalAppContext))]
-    [Migration("20200716212429_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200721223907_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

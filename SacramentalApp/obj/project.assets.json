@@ -2,6 +2,27 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "FreeSpire.Office/4.3.1": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing.Common": "4.5.0",
+          "System.Text.Encoding.CodePages": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Spire.Doc.dll": {},
+          "lib/netstandard2.0/Spire.License.dll": {},
+          "lib/netstandard2.0/Spire.Pdf.dll": {},
+          "lib/netstandard2.0/Spire.Presentation.dll": {},
+          "lib/netstandard2.0/Spire.XLS.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Spire.Doc.dll": {},
+          "lib/netstandard2.0/Spire.License.dll": {},
+          "lib/netstandard2.0/Spire.Pdf.dll": {},
+          "lib/netstandard2.0/Spire.Presentation.dll": {},
+          "lib/netstandard2.0/Spire.XLS.dll": {}
+        }
+      },
       "Microsoft.AspNetCore/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -1419,6 +1440,24 @@
           }
         }
       },
+      "Microsoft.Win32.SystemEvents/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.SystemEvents.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "type": "package",
         "dependencies": {
@@ -2132,6 +2171,29 @@
         },
         "compile": {
           "ref/netstandard1.5/System.Diagnostics.Tracing.dll": {}
+        }
+      },
+      "System.Drawing.Common/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.0.0",
+          "Microsoft.Win32.SystemEvents": "4.5.0"
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Drawing.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Drawing.Common.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
         }
       },
       "System.Globalization/4.3.0": {
@@ -3294,6 +3356,72 @@
     }
   },
   "libraries": {
+    "FreeSpire.Office/4.3.1": {
+      "sha512": "Zt8CoubJ7HFzZ9cKoowvAFSNCB/znUQ91rorM3uzkd7rqAZyKDpmuA5SiwbWypamAIQ2DVPvUV6tRoJNsApBKw==",
+      "type": "package",
+      "path": "freespire.office/4.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "freespire.office.4.3.1.nupkg.sha512",
+        "freespire.office.nuspec",
+        "lib/net20/Spire.Barcode.dll",
+        "lib/net20/Spire.Barcode.xml",
+        "lib/net20/Spire.Common.dll",
+        "lib/net20/Spire.Common.xml",
+        "lib/net20/Spire.DataExport.ResourceMgr.dll",
+        "lib/net20/Spire.DataExport.ResourceMgr.xml",
+        "lib/net20/Spire.DataExport.dll",
+        "lib/net20/Spire.DataExport.xml",
+        "lib/net20/Spire.Doc.XML",
+        "lib/net20/Spire.Doc.dll",
+        "lib/net20/Spire.DocViewer.Forms.dll",
+        "lib/net20/Spire.DocViewer.Forms.xml",
+        "lib/net20/Spire.License.dll",
+        "lib/net20/Spire.License.xml",
+        "lib/net20/Spire.Pdf.XML",
+        "lib/net20/Spire.Pdf.dll",
+        "lib/net20/Spire.PdfViewer.Forms.dll",
+        "lib/net20/Spire.PdfViewer.Forms.xml",
+        "lib/net20/Spire.Presentation.dll",
+        "lib/net20/Spire.Presentation.xml",
+        "lib/net20/Spire.XLS.XML",
+        "lib/net20/Spire.XLS.dll",
+        "lib/net40/Spire.Barcode.dll",
+        "lib/net40/Spire.Barcode.xml",
+        "lib/net40/Spire.Common.dll",
+        "lib/net40/Spire.Common.xml",
+        "lib/net40/Spire.DataExport.ResourceMgr.dll",
+        "lib/net40/Spire.DataExport.ResourceMgr.xml",
+        "lib/net40/Spire.DataExport.dll",
+        "lib/net40/Spire.DataExport.xml",
+        "lib/net40/Spire.Doc.XML",
+        "lib/net40/Spire.Doc.dll",
+        "lib/net40/Spire.DocViewer.Forms.dll",
+        "lib/net40/Spire.DocViewer.Forms.xml",
+        "lib/net40/Spire.License.dll",
+        "lib/net40/Spire.License.xml",
+        "lib/net40/Spire.Pdf.XML",
+        "lib/net40/Spire.Pdf.dll",
+        "lib/net40/Spire.PdfViewer.Forms.dll",
+        "lib/net40/Spire.PdfViewer.Forms.xml",
+        "lib/net40/Spire.Presentation.dll",
+        "lib/net40/Spire.Presentation.xml",
+        "lib/net40/Spire.XLS.XML",
+        "lib/net40/Spire.XLS.dll",
+        "lib/netstandard2.0/Spire.Doc.dll",
+        "lib/netstandard2.0/Spire.Doc.xml",
+        "lib/netstandard2.0/Spire.License.dll",
+        "lib/netstandard2.0/Spire.License.xml",
+        "lib/netstandard2.0/Spire.Pdf.dll",
+        "lib/netstandard2.0/Spire.Pdf.xml",
+        "lib/netstandard2.0/Spire.Presentation.dll",
+        "lib/netstandard2.0/Spire.Presentation.xml",
+        "lib/netstandard2.0/Spire.XLS.dll",
+        "lib/netstandard2.0/Spire.XLS.xml",
+        "license.txt"
+      ]
+    },
     "Microsoft.AspNetCore/2.2.0": {
       "sha512": "Bs75iht4lXS8uVWy/Cbsr9i0m2jRtnrfPEWU+6t0dQTZcJEfF9b7G2F7XvstLFWkAKSgYRzFkAwi/KypY0Qtew==",
       "type": "package",
@@ -5185,6 +5313,26 @@
         "version.txt"
       ]
     },
+    "Microsoft.Win32.SystemEvents/4.5.0": {
+      "sha512": "LuI1oG+24TUj1ZRQQjM5Ew73BKnZE5NZ/7eAdh1o8ST5dPhUnJvIkiIn2re3MwnkRy6ELRnvEbBxHP8uALKhJw==",
+      "type": "package",
+      "path": "microsoft.win32.systemevents/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Win32.SystemEvents.dll",
+        "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll",
+        "microsoft.win32.systemevents.4.5.0.nupkg.sha512",
+        "microsoft.win32.systemevents.nuspec",
+        "ref/net461/Microsoft.Win32.SystemEvents.dll",
+        "ref/netstandard2.0/Microsoft.Win32.SystemEvents.dll",
+        "runtimes/win/lib/netcoreapp2.0/Microsoft.Win32.SystemEvents.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "NETStandard.Library/1.6.1": {
       "sha512": "WcSp3+vP+yHNgS8EV5J7pZ9IRpeDuARBPN28by8zqff1wJQXm26PVU8L3/fYLBJVU7BtDyqNVWq2KlCVvSSR4A==",
       "type": "package",
@@ -6554,6 +6702,39 @@
         "ref/xamarinwatchos10/_._",
         "system.diagnostics.tracing.4.3.0.nupkg.sha512",
         "system.diagnostics.tracing.nuspec"
+      ]
+    },
+    "System.Drawing.Common/4.5.0": {
+      "sha512": "AiJFxxVPdeITstiRS5aAu8+8Dpf5NawTMoapZ53Gfirml24p7HIfhjmCRxdXnmmf3IUA3AX3CcW7G73CjWxW/Q==",
+      "type": "package",
+      "path": "system.drawing.common/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net461/System.Drawing.Common.dll",
+        "lib/netstandard2.0/System.Drawing.Common.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net461/System.Drawing.Common.dll",
+        "ref/netstandard2.0/System.Drawing.Common.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll",
+        "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll",
+        "system.drawing.common.4.5.0.nupkg.sha512",
+        "system.drawing.common.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Globalization/4.3.0": {
@@ -9859,6 +10040,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "FreeSpire.Office >= 4.3.1",
       "Microsoft.AspNetCore >= 2.2.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.6",
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.6",
@@ -9910,6 +10092,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "FreeSpire.Office": {
+            "target": "Package",
+            "version": "[4.3.1, )"
+          },
           "Microsoft.AspNetCore": {
             "target": "Package",
             "version": "[2.2.0, )"
