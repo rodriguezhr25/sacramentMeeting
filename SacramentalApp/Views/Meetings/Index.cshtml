@@ -10,18 +10,18 @@
 </p>
 <form asp-action="Index" method="get">
     <div class="form-group row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <div class="input-group">
                 <div class="input-group-append">
                     <input type="text" id="searchBox" name="SearchString" class="form-control" placeholder="Conducting Leader" value="@ViewData["currentFilter"]" />
                 </div>
             </div>
         </div>
-        <label for="startDate" class="col-sm-1 col-form-label pull-right">Since:</label>
+        <label for="startDate" class="col-sm-1 col-form-label">Since:</label>
         <div class="col-sm-2">
             <input type="date" class="form-control" id="startDate" name="DateInit" value="@ViewData["dateInitFilter"]" />
         </div>
-        <label for="endDate" class="col-sm-1 col-form-label pull-right">To:</label>
+        <label for="endDate" class="col-sm-1 col-form-label">To:</label>
         <div class="col-sm-2">
             <input type="date" class="form-control" id="endDate" name="DateEnd" value="@ViewData["dateEndFilter"]" />
         </div>

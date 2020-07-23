@@ -11,6 +11,7 @@ namespace SacramentalApp.Models
         public int Id { get; set; }
         public int MeetingId { get; set; }
         [Display(Name = "Name Speaker")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$", ErrorMessage = "Insert only Letters, first letter Uppercase")]
         [StringLength(100, MinimumLength = 10)]
         public string NameSpeaker { get; set; }
         [StringLength(100, MinimumLength = 10)]

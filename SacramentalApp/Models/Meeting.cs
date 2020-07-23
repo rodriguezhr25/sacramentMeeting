@@ -16,13 +16,14 @@ namespace SacramentalApp.Models
         public DateTime Date { get; set; }
 
         [StringLength(100, MinimumLength = 10)]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$", ErrorMessage = "Insert only Letters, first letter Uppercase")]
         [Display(Name = "Conducting Leader")]
         public string ConductingLeader { get; set; }
 
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Opening Song")]
         public string OpeningSong { get; set; }
-
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$", ErrorMessage = "Insert only Letters, first letter Uppercase")]
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Opening Prayer")]
         public string OpeningPrayer { get; set; }
@@ -38,7 +39,7 @@ namespace SacramentalApp.Models
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Closening Song")]
         public string CloseningSong { get; set; }
-
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$", ErrorMessage = "Insert only Letters, first letter Uppercase")]
         [StringLength(100, MinimumLength = 10)]
         [Display(Name = "Closening Prayer")]
         public string CloseningPrayer { get; set; }
