@@ -10,9 +10,19 @@
 </p>
 <form asp-action="Index" method="get">
     <div class="form-group row">
-        <label for="searchBox" class="col-sm-2 col-form-label">Find by Leader:</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" id="searchBox" name="SearchString" value="@ViewData["currentFilter"]" />
+        @*<label for="searchBox" class="col-sm-2 col-form-label">Find by Leader:</label>*@
+        <div class="col-sm-3">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <input type="text"  id="searchBox" name="SearchString" class="form-control" placeholder="Conducting Leader" value="@ViewData["currentFilter"]" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <input type="date" class="form-control" id="startDate" name="DateInit" value="@ViewData["dateInitFilter"]" />
+        </div>
+        <div class="col-sm-3">
+            <input type="date" class="form-control" id="startDate" name="DateEnd" value="@ViewData["dateEndFilter"]" />
         </div>
         <div class="col-sm-1">
             <input type="submit" value="Search" class="btn btn-primary" />
@@ -28,10 +38,10 @@
             <thead class="border-bottom">
                 <tr>
                     <th>
-                        <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]"> Date</a>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" asp-route-dateInitFilter="@ViewData["DateInitFilter"]" asp-route-dateEndFilter="@ViewData["DateEndFilter"]"> Date</a>
                     </th>
                     <th>
-                        <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Conducting Leader</a>
+                       Conducting Leader
                     </th>
                     <th>
                         Opening Song
@@ -58,39 +68,39 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ConductingLeader)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OpeningSong)
-                    </td>
-                    <td class="note-cell">
-                        @Html.DisplayFor(modelItem => item.OpeningPrayer)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SacramentHymn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IntermediateHymn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CloseningSong)
-                    </td>
-                    <td class="note-cell">
-                        @Html.DisplayFor(modelItem => item.CloseningPrayer)
-                    </td>
-                    <td class="note-cell">
-                        <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
-                        <a class="btn btn-primary" asp-action="EditSpeakers" asp-route-id="@item.Id" title="Manage Speakers"><i class="fa fa-users"></i></a>
-                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id" title="Details"><i class="fa fa-file-o"></i></a>
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i class="fa fa-trash"></i></a>
-                        <a class="btn btn-warning" asp-action="Print" asp-route-id="@item.Id" title="Print"><i class="fa fa-print"></i></a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConductingLeader)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpeningSong)
+                        </td>
+                        <td class="note-cell">
+                            @Html.DisplayFor(modelItem => item.OpeningPrayer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SacramentHymn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IntermediateHymn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CloseningSong)
+                        </td>
+                        <td class="note-cell">
+                            @Html.DisplayFor(modelItem => item.CloseningPrayer)
+                        </td>
+                        <td class="note-cell">
+                            <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                            <a class="btn btn-primary" asp-action="EditSpeakers" asp-route-id="@item.Id" title="Manage Speakers"><i class="fa fa-users"></i></a>
+                            <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id" title="Details"><i class="fa fa-file-o"></i></a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-warning" asp-action="Print" asp-route-id="@item.Id" title="Print"><i class="fa fa-print"></i></a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
@@ -106,6 +116,8 @@
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-dateInitFilter="@ViewData["DateInitFilter"]"
+   asp-route-dateEndFilter="@ViewData["DateEndFilter"]"
    class="btn btn-primary @prevDisabled">
     Previous
 </a>
@@ -113,6 +125,8 @@
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-dateInitFilter="@ViewData["DateInitFilter"]"
+   asp-route-dateEndFilter="@ViewData["DateEndFilter"]"
    class="btn btn-primary @nextDisabled">
     Next
 </a>

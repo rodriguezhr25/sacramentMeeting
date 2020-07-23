@@ -28,10 +28,11 @@ namespace SacramentalApp.Controllers
              string sortOrder,
              string currentFilter,
              string searchString,
-             int? pageNumber)
+             int? pageNumber,
+             string  DateInit, string  DateEnd, string dateInitFilter, string dateEndFilter)
         {
             ViewData["CurrentSort"] = sortOrder;
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            //ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
 
             if (searchString != null)
@@ -42,28 +43,63 @@ namespace SacramentalApp.Controllers
             {
                 searchString = currentFilter;
             }
+            if (DateInit != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                DateInit = dateInitFilter;
+            }
+            if (DateEnd != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                DateEnd = dateEndFilter;
+            }
             ViewData["CurrentFilter"] = searchString;
+            ViewData["DateInitFilter"] = DateInit;
+            ViewData["DateEndFilter"] = DateEnd;
+           DateTime DateInitTemp = Convert.ToDateTime(DateInit);
+           DateTime DateEndTemp = Convert.ToDateTime(DateEnd);
             var meetings = from s in _context.Meeting
+                           orderby s.Date descending
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
-                meetings = meetings.Where(s => s.ConductingLeader.Contains(searchString));
+                meetings = meetings.Where(s => s.ConductingLeader.Contains(searchString)).OrderByDescending(s => s.Date);
                                    
             }
+            if (!(DateInitTemp== default(DateTime)) && !(DateEndTemp == default(DateTime)))//If there are start and end
+            {
+                meetings = meetings.Where(s => s.Date >= DateInitTemp && s.Date <= DateEndTemp).OrderByDescending(s => s.Date);
+
+            }
+            else if (!(DateInitTemp == default(DateTime)))//greater than init date
+            {
+                meetings = meetings.Where(s => s.Date >= DateInitTemp).OrderByDescending(s => s.Date);
+            }
+            else if (!(DateEndTemp == default(DateTime)))//less than end date
+            {
+                meetings = meetings.Where(s => s.Date <= DateEndTemp).OrderByDescending(s => s.Date);
+            }
+
             switch (sortOrder)
             {
-                case "name_desc":
-                    meetings = meetings.OrderByDescending(s => s.ConductingLeader);
-                    break;
+                //case "name_desc":
+                //    meetings = meetings.OrderByDescending(s => s.ConductingLeader);
+                //    break;
                 case "Date":
                     meetings = meetings.OrderBy(s => s.Date);
                     break;
                 case "date_desc":
                     meetings = meetings.OrderByDescending(s => s.Date);
                     break;
-                default:
-                    meetings = meetings.OrderBy(s => s.ConductingLeader);
-                    break;
+                //default:
+                //    meetings = meetings.OrderBy(s => s.ConductingLeader);
+                //    break;
             }
      
             int pageSize = 5;
