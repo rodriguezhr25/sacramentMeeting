@@ -23,68 +23,40 @@
             @Html.DisplayFor(model => model.ConductingLeader)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.OpeningSong)
+            Opening Hymn
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OpeningSong)
+            @Html.DisplayFor(model => model.OpeningSong.Name)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OpeningPrayer)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OpeningPrayer)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentHymn)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentHymn)
-        </dd>
-
-
-        @*speeches*@
 
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Speeches)
+            Sacrament Hymn
         </dt>
         <dd class="col-sm-10">
-
-
-            <table class="table">
-                <tr>
-                    <th>Speaker</th>
-                    <th>Topic</th>
-                </tr>
-                @foreach (var item in Model.Speeches)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NameSpeaker)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Topic)
-                        </td>
-                    </tr>
-                }
-            </table>
-
+            @Html.DisplayFor(model => model.SacramentHymn.Name)
         </dd>
-
-        @*end speeches*@
-
 
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IntermediateHymn)
+            Intermediate Hymn
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IntermediateHymn)
+            @Html.DisplayFor(model => model.IntermediateHymn.Name)
         </dd>
+
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CloseningSong)
+           Closing Hymn
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CloseningSong)
+            @Html.DisplayFor(model => model.CloseningSong.Name)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CloseningPrayer)
         </dt>
@@ -92,10 +64,60 @@
             @Html.DisplayFor(model => model.CloseningPrayer)
         </dd>
 
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Attendance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Attendance)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Announcements)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Announcements)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Acknowledgements)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Acknowledgements)
+        </dd>
+
+        <dt class="col-sm-2">
+            Speeches
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Speaker</th>
+                        <th>Topic</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Speeches)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameSpeaker)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Topic)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
     </dl>
 </div>
+
 <div>
     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-    <a class="btn btn-success" asp-action="Print" asp-route-id="@Model.Id" title="Print"><i class="fa fa-print"></i></a>
+    <a class="btn btn-success" asp-action="Print" asp-route-id="@Model.Id" title="Print">
+        <i class="fa fa-print"></i> Print
+    </a>
     <a class="btn btn-warning" asp-action="Index">Back to List</a>
 </div>

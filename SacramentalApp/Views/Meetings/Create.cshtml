@@ -9,49 +9,79 @@
 <h4>Meeting</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8 offset-md-2">
+        <!-- Center the form on larger screens -->
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Date" class="control-label"></label>
+                        <input asp-for="Date" class="form-control" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ConductingLeader" class="control-label"></label>
+                        <input asp-for="ConductingLeader" class="form-control" />
+                        <span asp-validation-for="ConductingLeader" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Opening Hymn</label>
+                        <select id="OpeningSong" class="form-control" asp-for="OpeningSongId"></select>
+                        <span asp-validation-for="OpeningSongId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="OpeningPrayer" class="control-label"></label>
+                        <input asp-for="OpeningPrayer" class="form-control" />
+                        <span asp-validation-for="OpeningPrayer" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Sacrament Hymn</label>
+                        <select id="SacramentHymn" class="form-control" asp-for="SacramentHymnId"></select>
+                        <span asp-validation-for="SacramentHymnId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Intermediate Hymn</label>
+                        <select id="IntermediateHymn" class="form-control" asp-for="IntermediateHymnId"></select>
+                        <span asp-validation-for="IntermediateHymnId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Closing Hymn</label>
+                        <select id="CloseningSong" class="form-control" asp-for="CloseningSongId"></select>
+                        <span asp-validation-for="CloseningSongId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">                   
+
+                    <div class="form-group">
+                        <label asp-for="CloseningPrayer" class="control-label"></label>
+                        <input asp-for="CloseningPrayer" class="form-control" />
+                        <span asp-validation-for="CloseningPrayer" class="text-danger"></span>
+                    </div>
+
+                    <!-- Announcements field -->
+                    <div class="form-group">
+                        <label asp-for="Announcements" class="control-label"></label>
+                        <textarea asp-for="Announcements" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="Announcements" class="text-danger"></span>
+                    </div>
+
+                    <!-- Acknowledgements field -->
+                    <div class="form-group">
+                        <label asp-for="Acknowledgements" class="control-label"></label>
+                        <textarea asp-for="Acknowledgements" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="Acknowledgements" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ConductingLeader" class="control-label"></label>
-                <input asp-for="ConductingLeader" class="form-control" />
-                <span asp-validation-for="ConductingLeader" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OpeningSong" class="control-label"></label>
-                <input asp-for="OpeningSong" class="form-control" />
-                <span asp-validation-for="OpeningSong" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OpeningPrayer" class="control-label"></label>
-                <input asp-for="OpeningPrayer" class="form-control" />
-                <span asp-validation-for="OpeningPrayer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SacramentHymn" class="control-label"></label>
-                <input asp-for="SacramentHymn" class="form-control" />
-                <span asp-validation-for="SacramentHymn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IntermediateHymn" class="control-label"></label>
-                <input asp-for="IntermediateHymn" class="form-control" />
-                <span asp-validation-for="IntermediateHymn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CloseningSong" class="control-label"></label>
-                <input asp-for="CloseningSong" class="form-control" />
-                <span asp-validation-for="CloseningSong" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CloseningPrayer" class="control-label"></label>
-                <input asp-for="CloseningPrayer" class="form-control" />
-                <span asp-validation-for="CloseningPrayer" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
                 <a class="btn btn-warning" asp-action="Index">Back to List</a>
@@ -60,8 +90,61 @@
     </div>
 </div>
 
-
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Prepare hymn data
+            var hymns = @Html.Raw(ViewBag.Hymns); // Use the serialized data directly
+            console.log("Hymn data loaded:", hymns); // Log the hymn data
+
+            // Check if hymns is valid
+            if (!Array.isArray(hymns) || hymns.some(hymn => !hymn.Id || !hymn.Display)) {
+                console.error("Invalid hymn data:", hymns);
+                return; // Stop execution if data is invalid
+            }
+
+            // Function to initialize Select2
+            function setupSelect2(selectId, hiddenInputId) {
+                var $select = $("#" + selectId);
+                var $hiddenInput = $("#" + hiddenInputId);
+
+                // Initialize Select2
+                $select.select2({
+                    placeholder: 'Select a hymn',
+                    allowClear: true,
+                    minimumResultsForSearch: 0,
+                    data: hymns.map(function (hymn) {
+                        return {
+                            id: hymn.Id,
+                            text: hymn.Display
+                        };
+                    })
+                }).val(null).trigger('change');
+
+                // Set hidden input value on selection
+                $select.on("select2:select", function (e) {
+                    var data = e.params.data;
+                    $hiddenInput.val(data.id);
+                });
+
+                // Clear hidden input when selection is cleared
+                $select.on("select2:unselect", function () {
+                    $hiddenInput.val('');
+                });
+            }
+
+            // Initialize Select2 for each hymn dropdown
+            setupSelect2("OpeningSong", "OpeningSongId");
+            setupSelect2("SacramentHymn", "SacramentHymnId");
+            setupSelect2("IntermediateHymn", "IntermediateHymnId");
+            setupSelect2("CloseningSong", "CloseningSongId");
+        });
+    </script>
 }

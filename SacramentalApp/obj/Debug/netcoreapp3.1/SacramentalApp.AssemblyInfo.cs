@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SacramentalApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+163b957ac279bd31ff2c505dd446bd744d48ae68")]
 [assembly: System.Reflection.AssemblyProductAttribute("SacramentalApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SacramentalApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

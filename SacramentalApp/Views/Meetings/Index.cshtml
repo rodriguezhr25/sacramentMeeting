@@ -45,7 +45,7 @@
                        Conducting Leader
                     </th>
                     <th>
-                        Opening Song
+                        Opening Hymn
                     </th>
                     <th>
                         Opening Prayer
@@ -57,10 +57,13 @@
                         Intermediate Hymn
                     </th>
                     <th>
-                        Closening Song
+                        Closing Hymn
                     </th>
                     <th>
-                        Closening Prayer
+                        Benediction
+                    </th>
+                    <th>
+                        Attendance
                     </th>
                     <th></th>
                     <th></th>
@@ -76,24 +79,13 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.ConductingLeader)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OpeningSong)
-                        </td>
-                        <td class="note-cell">
-                            @Html.DisplayFor(modelItem => item.OpeningPrayer)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SacramentHymn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IntermediateHymn)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CloseningSong)
-                        </td>
-                        <td class="note-cell">
-                            @Html.DisplayFor(modelItem => item.CloseningPrayer)
-                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.OpeningSong.Name)</td> <!-- Use appropriate property -->
+                        <td class="note-cell">@Html.DisplayFor(modelItem => item.OpeningPrayer)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SacramentHymn.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IntermediateHymn.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CloseningSong.Name)</td>
+                        <td class="note-cell">@Html.DisplayFor(modelItem => item.CloseningPrayer)</td>
+                        <td class="note-cell">@Html.DisplayFor(modelItem => item.Attendance)</td>
                         <td class="note-cell">
                             <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
                             <a class="btn btn-primary" asp-action="EditSpeakers" asp-route-id="@item.Id" title="Manage Speakers"><i class="fa fa-users"></i></a>

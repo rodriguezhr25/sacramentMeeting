@@ -11,6 +11,7 @@ using System.IO;
 using Spire.Pdf;
 using Spire.Pdf.Graphics;
 using System.Drawing;
+using Newtonsoft.Json;
 
 namespace SacramentalApp.Controllers
 {
@@ -64,9 +65,11 @@ namespace SacramentalApp.Controllers
             ViewData["DateEndFilter"] = DateEnd;
            DateTime DateInitTemp = Convert.ToDateTime(DateInit);
            DateTime DateEndTemp = Convert.ToDateTime(DateEnd);
-            var meetings = from s in _context.Meeting
-                           orderby s.Date descending
-                           select s;
+            var meetings = from m in _context.Meeting.Include(m => m.OpeningSong)
+                                        .Include(m => m.SacramentHymn)
+                                        .Include(m => m.IntermediateHymn)
+                                        .Include(m => m.CloseningSong)
+                           select m;
             if (!String.IsNullOrEmpty(searchString))
             {
                 meetings = meetings.Where(s => s.ConductingLeader.Contains(searchString)).OrderByDescending(s => s.Date);
@@ -97,12 +100,12 @@ namespace SacramentalApp.Controllers
                 case "date_desc":
                     meetings = meetings.OrderByDescending(s => s.Date);
                     break;
-                //default:
-                //    meetings = meetings.OrderBy(s => s.ConductingLeader);
-                //    break;
+                default:
+                    meetings = meetings.OrderByDescending(s => s.Date);
+                    break;
             }
      
-            int pageSize = 5;
+            int pageSize = 6;
             return View(await PaginatedList<Meeting>.CreateAsync(meetings.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -118,14 +121,14 @@ namespace SacramentalApp.Controllers
             //    .FirstOrDefaultAsync(m => m.Id == id);
 
             var meeting = await _context.Meeting
-            .Include(s => s.Speeches) 
-            .AsNoTracking()
+            .Include(m => m.OpeningSong)
+            .Include(m => m.SacramentHymn)
+            .Include(m => m.IntermediateHymn)
+            .Include(m => m.CloseningSong)
+            .Include(m => m.Speeches) // Ensure to include speeches if necessary
             .FirstOrDefaultAsync(m => m.Id == id);
 
-
-
-
-
+           
             if (meeting == null)
             {
                 return NotFound();
@@ -135,36 +138,51 @@ namespace SacramentalApp.Controllers
             return View(meeting);
         }
 
+
         // GET: Meetings/Create
         public IActionResult Create()
         {
+            var hymns = _context.MusicSelection
+                .Select(h => new {
+                    Id = h.Id.ToString(),
+                    Display = $"{h.HymnNumber} - {h.Name}" // Ensure this is a properly formatted string
+                }).ToList();
+
+            ViewBag.Hymns = JsonConvert.SerializeObject(hymns); // Serialize using JSON
             return View();
         }
 
         // POST: Meetings/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,ConductingLeader,OpeningSong,OpeningPrayer,SacramentHymn,IntermediateHymn,CloseningSong,CloseningPrayer")] Meeting meeting)
+        public async Task<IActionResult> Create([Bind("Id,Date,ConductingLeader,OpeningSongId,OpeningPrayer,SacramentHymnId,IntermediateHymnId,CloseningSongId,CloseningPrayer")] Meeting meeting)
         {
+            // Check for existing meeting on the same date
             var dateMeeting = await _context.Meeting
-           .Include(s => s.Speeches)
-           .AsNoTracking()
-           .FirstOrDefaultAsync(m => m.Date == meeting.Date);
-            if(dateMeeting != null)
+               .Include(s => s.Speeches)
+               .AsNoTracking()
+               .FirstOrDefaultAsync(m => m.Date == meeting.Date);
+
+            if (dateMeeting != null)
             {
                 ModelState.AddModelError(string.Empty, "There exists a register for this date");
             }
+
             if (ModelState.IsValid)
             {
-                _context.Add(meeting);
+                _context.Meeting.Add(meeting);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(meeting);
-        }
 
+            // Repopulate ViewBag if model state is invalid
+            ViewBag.OpeningSongId = new SelectList(_context.MusicSelection, "Id", "Name", meeting.OpeningSongId);
+            ViewBag.SacramentHymnId = new SelectList(_context.MusicSelection, "Id", "Name", meeting.SacramentHymnId);
+            ViewBag.IntermediateHymnId = new SelectList(_context.MusicSelection, "Id", "Name", meeting.IntermediateHymnId);
+            ViewBag.CloseningSongId = new SelectList(_context.MusicSelection, "Id", "Name", meeting.CloseningSongId);
+
+            return View(meeting); // Return the view with the meeting model to show validation errors
+        }
         // GET: Meetings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -173,20 +191,34 @@ namespace SacramentalApp.Controllers
                 return NotFound();
             }
 
-            var meeting = await _context.Meeting.FindAsync(id);
+            var meeting = await _context.Meeting
+                .Include(m => m.OpeningSong)
+                .Include(m => m.SacramentHymn)
+                .Include(m => m.IntermediateHymn)
+                .Include(m => m.CloseningSong)
+                .Include(m => m.Speeches) // Ensure to include speeches if necessary
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (meeting == null)
             {
                 return NotFound();
             }
+
+            var hymns = _context.MusicSelection
+                .Select(h => new {
+                    Id = h.Id.ToString(),
+                    Display = $"{h.HymnNumber} - {h.Name}" // Ensure this is a properly formatted string
+                }).ToList();
+
+            ViewBag.Hymns = JsonConvert.SerializeObject(hymns); // Serialize using JSON
+
             return View(meeting);
         }
 
         // POST: Meetings/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,ConductingLeader,OpeningSong,OpeningPrayer,SacramentHymn,IntermediateHymn,CloseningSong,CloseningPrayer")] Meeting meeting)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,ConductingLeader,OpeningSongId,OpeningPrayer,SacramentHymnId,IntermediateHymnId,CloseningSongId,CloseningPrayer,Attendance,Announcements,Acknowledgements")] Meeting meeting)
         {
             if (id != meeting.Id)
             {
@@ -213,9 +245,21 @@ namespace SacramentalApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(meeting);
+
+            // Repopulate ViewBag if model state is invalid
+            ViewBag.OpeningSongId = new SelectList(_context.MusicSelection, "Id", "Name", meeting.OpeningSongId);
+            ViewBag.SacramentHymnId = new SelectList(_context.MusicSelection, "Id", "Name", meeting.SacramentHymnId);
+            ViewBag.IntermediateHymnId = new SelectList(_context.MusicSelection, "Id", "Name", meeting.IntermediateHymnId);
+            ViewBag.CloseningSongId = new SelectList(_context.MusicSelection, "Id", "Name", meeting.CloseningSongId);
+
+            return View(meeting); // Return the view with the meeting model to show validation errors
         }
 
+        // Helper method to check if a meeting exists
+        private bool MeetingExists(int id)
+        {
+            return _context.Meeting.Any(e => e.Id == id);
+        }
         // GET: Meetings/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -225,7 +269,12 @@ namespace SacramentalApp.Controllers
             }
 
             var meeting = await _context.Meeting
-                .FirstOrDefaultAsync(m => m.Id == id);
+            .Include(m => m.OpeningSong)
+            .Include(m => m.SacramentHymn)
+            .Include(m => m.IntermediateHymn)
+            .Include(m => m.CloseningSong)
+            .Include(m => m.Speeches) // Ensure to include speeches if necessary
+            .FirstOrDefaultAsync(m => m.Id == id);
             if (meeting == null)
             {
                 return NotFound();
@@ -257,7 +306,10 @@ namespace SacramentalApp.Controllers
             }
 
             var meeting = await _context.Meeting
-
+            .Include(m => m.OpeningSong)
+            .Include(m => m.SacramentHymn)
+            .Include(m => m.IntermediateHymn)
+            .Include(m => m.CloseningSong)
             .Include(s => s.Speeches)
 
 
@@ -291,7 +343,11 @@ namespace SacramentalApp.Controllers
             //    .FirstOrDefaultAsync(m => m.Id == id);
 
             var meeting = await _context.Meeting
-            .Include(s => s.Speeches)
+            .Include(s => s.OpeningSong) // Include the related MusicSelection
+            .Include(s => s.SacramentHymn) // Include the related MusicSelection
+            .Include(s => s.IntermediateHymn) // Include the related MusicSelection
+            .Include(s => s.CloseningSong) // Include the related MusicSelection
+             .Include(m => m.Speeches) // Ensure to include speeches if necessary
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -351,7 +407,7 @@ namespace SacramentalApp.Controllers
             page.Canvas.DrawLine(pen, init, y + 210, end, y + 210);
            
             page.Canvas.DrawString("Opening hymn: ", fontBold, brush, pageSize.Width - x - width - 2, 220);
-            page.Canvas.DrawString(meeting.ConductingLeader, fontRegular, brush, pageSize.Width - x - width + 95, 220);
+            page.Canvas.DrawString(meeting.OpeningSong?.Name, fontRegular, brush, pageSize.Width - x - width + 95, 220);
             page.Canvas.DrawString("Invocation: ", fontBold, brush, pageSize.Width - x - width - 2, 240);
             page.Canvas.DrawString(meeting.OpeningPrayer, fontRegular, brush, pageSize.Width - x - width + 95, 240);
 
@@ -359,7 +415,7 @@ namespace SacramentalApp.Controllers
             page.Canvas.DrawLine(pen, init, y + 300, end, y + 300);
             page.Canvas.DrawLine(pen, init, y + 320, end, y + 320);
             page.Canvas.DrawString("Sacrament hymn: ", fontBold, brush, pageSize.Width - x - width - 2, 330);
-            page.Canvas.DrawString(meeting.SacramentHymn, fontRegular, brush, pageSize.Width - x - width + 105, 330);
+            page.Canvas.DrawString(meeting.SacramentHymn?.Name, fontRegular, brush, pageSize.Width - x - width + 105, 330);
             page.Canvas.DrawString("Speakers", fontBold, brush, width / 2, 350, alignCenter);
 
             PdfPen pen2 = new PdfPen(PdfBrushes.Black, 1);
@@ -397,13 +453,13 @@ namespace SacramentalApp.Controllers
                 {
                     vPosition = vPosition + 20;
                     page.Canvas.DrawString("Intermediate Hymn: ", fontBold, brush, pageSize.Width - x - width - 2, vPosition);
-                    page.Canvas.DrawString(meeting.SacramentHymn, fontRegular, brush, pageSize.Width - x - width + 125, vPosition);
+                    page.Canvas.DrawString(meeting.IntermediateHymn?.Name, fontRegular, brush, pageSize.Width - x - width + 125, vPosition);
                 }
             }
             page.Canvas.DrawLine(pen2, init, y + vPosition + 20 , end, y + vPosition + 20);
             vPosition = vPosition + 40;
             page.Canvas.DrawString("Closing hymn: ", fontBold, brush, pageSize.Width - x - width - 2, vPosition);
-            page.Canvas.DrawString(meeting.CloseningSong, fontRegular, brush, pageSize.Width - x - width + 95, vPosition);
+            page.Canvas.DrawString(meeting.CloseningSong?.Name, fontRegular, brush, pageSize.Width - x - width + 95, vPosition);
             page.Canvas.DrawString("Benediction: ", fontBold, brush, pageSize.Width - x - width - 2, vPosition + 20);
             page.Canvas.DrawString(meeting.CloseningPrayer, fontRegular, brush, pageSize.Width - x - width + 95, vPosition + 20);
             var path = Path.Combine(
@@ -479,10 +535,6 @@ namespace SacramentalApp.Controllers
 
             //return headerSpace
             return headerSpace;
-        }
-        private bool MeetingExists(int id)
-        {
-            return _context.Meeting.Any(e => e.Id == id);
         }
     }
 }

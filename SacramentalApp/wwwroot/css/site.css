@@ -3,6 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Titillium+Web&display=swap');
 @import url('../lib/font-awesome-4.7.0/css/font-awesome.min.css');
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -158,4 +159,7 @@ th, td {
         color: #000000;
         text-shadow: 5px 5px 6px #ffffff;
     }
-   
+
+    .custom-container{
+        max-width:60%;
+    }

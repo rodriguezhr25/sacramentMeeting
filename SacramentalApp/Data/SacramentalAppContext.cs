@@ -18,6 +18,7 @@ namespace SacramentalApp.Data
 
         public DbSet<SacramentalApp.Models.Meeting> Meeting { get; set; }
         public DbSet<SacramentalApp.Models.Speech>  Speech { get; set; }
+        public DbSet<SacramentalApp.Models.MusicSelection> MusicSelection { get; set; }
     }
 }
 
